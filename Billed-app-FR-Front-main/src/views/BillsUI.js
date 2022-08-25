@@ -19,12 +19,23 @@ const row = (bill) => {
     `)
   }
 
+// fonction antichrono pour trier par date
+// const antiChrono = (a, b) => {
+//   console.log(a);
+//   return a.name - b.name;
+// }
+
+
 const rows = (data) => {
   
-  const antiChrono = (a, b) => ((a > b) ? -1 : 1)
-  data = [...data].sort(antiChrono)
-  
-  return (data && data.length) ? data.map(bill => row(bill)).join("") : ""
+
+
+ if (data && data.length) {
+    data.sort(function (a, b) {
+      return new Date(b.date) - new Date(a.date);
+    });
+    return data.map(bill => row(bill)).join("");
+  }
 }
 
 
