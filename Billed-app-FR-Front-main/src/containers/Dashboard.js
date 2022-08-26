@@ -91,8 +91,6 @@ export default class {
 
     if (this.id === undefined || this.id !== bill.id) this.id = bill.id 
 
-
-    
     if (this.counter % 2 === 0 ) {
 
       bills.forEach(b => {
@@ -104,7 +102,7 @@ export default class {
 
     } 
 
-    else if (this.counter ===1 || this.counter % 2 !== 0){
+    else{
       $(`#open-bill${bill.id}`).css({ background: '#0D5AE5' })
       
       $('.dashboard-right-container div').html(`

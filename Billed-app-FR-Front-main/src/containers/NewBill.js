@@ -15,6 +15,33 @@ export default class NewBill {
     this.billId = null
     new Logout({ document, localStorage, onNavigate })
   }
+
+
+  // handleChangeFile = (e) => {
+  //   const file = this.document.querySelector(`input[data-testid='file']`).files[0];
+  //   // Added image format check provided
+  //   const extensionCheck = /(png|jpg|jpeg)/g;
+  //   const extension = file.name.split('.').pop();
+
+  //   /**
+  //    * if the extension is valid, we accept and add the class 'hideErrorMessage',
+  //    * otherwise we empty the entry, and remove the class 'hideErrorMessage'
+  //    * which will show the error message
+  //    */
+  //   if (extension.toLowerCase().match(extensionCheck)) {
+  //     document.getElementById('errorFileType').classList.add('hideErrorMessage');
+  //     const filePath = e.target.value.split(/\\/g);
+  //     const fileName = filePath[filePath.length - 1];
+
+  //     this.handleFirestoreStorage(fileName, file);
+  //   } else {
+  //     document.getElementById('errorFileType').classList.remove('hideErrorMessage');
+  //     this.document.querySelector(`input[data-testid='file']`).value = null;
+  //   };
+  // }
+
+
+
   handleChangeFile = e => {
     e.preventDefault()
     const file = this.document.querySelector(`input[data-testid="file"]`).files[0]
@@ -22,7 +49,11 @@ export default class NewBill {
     const fileName = filePath[filePath.length-1]
     const formData = new FormData()
     const email = JSON.parse(localStorage.getItem("user")).email
+
+    //IF JPEG OK
     formData.append('file', file)
+
+    //ELSE FORMDATA APPEND NOTHING / ERROR MESSAGE
     formData.append('email', email)
 
     this.store
@@ -40,6 +71,11 @@ export default class NewBill {
         this.fileName = fileName
       }).catch(error => console.error(error))
   }
+
+
+
+
+
   handleSubmit = e => {
     e.preventDefault()
     console.log('e.target.querySelector(`input[data-testid="datepicker"]`).value', e.target.querySelector(`input[data-testid="datepicker"]`).value)
