@@ -85,24 +85,25 @@ export default class {
     if (typeof $('#modaleFileAdmin1').modal === 'function') $('#modaleFileAdmin1').modal('show')
   }
 
-  handleEditTicket(e, bill, bills) {
+    handleEditTicket(e, bill, bills) {
+
+    if (this.counter === undefined || this.id !== bill.id) this.counter = 0
+
+    if (this.id === undefined || this.id !== bill.id) this.id = bill.id
     
-    if (this.counter === undefined || this.id !== bill.id) this.counter = 0;
-
-    if (this.id === undefined || this.id !== bill.id) this.id = bill.id 
-
     if (this.counter % 2 === 0 ) {
-
       bills.forEach(b => {
         $(`#open-bill${b.id}`).css({ background: '#0D5AE5' })
       })
       $(`#open-bill${bill.id}`).css({ background: '#2A2B35' })
       $('.dashboard-right-container div').html(DashboardFormUI(bill))
       $('.vertical-navbar').css({ height: '150vh' })
-
-    } 
-
-    else{
+      
+      // console.log('counter après le if', this.counter);
+      // console.log('counter après le if', this.counter);
+      this.counter ++
+      
+    } else if (this.counter % 2 === 0 ) {
       $(`#open-bill${bill.id}`).css({ background: '#0D5AE5' })
       
       $('.dashboard-right-container div').html(`
@@ -110,13 +111,16 @@ export default class {
       `)
       $('.vertical-navbar').css({ height: '120vh' })
       
-      
+      this.counter ++
+    }
+    else{
+      this.counter=0
     }
     $('#icon-eye-d').click(this.handleClickIconEye)
     $('#btn-accept-bill').click((e) => this.handleAcceptSubmit(e, bill))
     $('#btn-refuse-bill').click((e) => this.handleRefuseSubmit(e, bill))
   }
-
+  
   handleAcceptSubmit = (e, bill) => {
     const newBill = {
       ...bill,
