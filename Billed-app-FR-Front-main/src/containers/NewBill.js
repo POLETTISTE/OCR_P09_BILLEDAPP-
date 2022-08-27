@@ -17,31 +17,6 @@ export default class NewBill {
   }
 
 
-  // handleChangeFile = (e) => {
-  //   const file = this.document.querySelector(`input[data-testid='file']`).files[0];
-  //   // Added image format check provided
-  //   const extensionCheck = /(png|jpg|jpeg)/g;
-  //   const extension = file.name.split('.').pop();
-
-  //   /**
-  //    * if the extension is valid, we accept and add the class 'hideErrorMessage',
-  //    * otherwise we empty the entry, and remove the class 'hideErrorMessage'
-  //    * which will show the error message
-  //    */
-  //   if (extension.toLowerCase().match(extensionCheck)) {
-  //     document.getElementById('errorFileType').classList.add('hideErrorMessage');
-  //     const filePath = e.target.value.split(/\\/g);
-  //     const fileName = filePath[filePath.length - 1];
-
-  //     this.handleFirestoreStorage(fileName, file);
-  //   } else {
-  //     document.getElementById('errorFileType').classList.remove('hideErrorMessage');
-  //     this.document.querySelector(`input[data-testid='file']`).value = null;
-  //   };
-  // }
-
-
-
   handleChangeFile = e => {
     e.preventDefault()
     const file = this.document.querySelector(`input[data-testid="file"]`).files[0]
@@ -49,31 +24,50 @@ export default class NewBill {
     const fileName = filePath[filePath.length-1]
     const formData = new FormData()
     const email = JSON.parse(localStorage.getItem("user")).email
-
-    //IF JPEG OK
-    formData.append('file', file)
-
-    //ELSE FORMDATA APPEND NOTHING / ERROR MESSAGE
     formData.append('email', email)
 
-    this.store
-      .bills()
-      .create({
-        data: formData,
-        headers: {
-          noContentType: true
-        }
-      })
-      .then(({fileUrl, key}) => {
-        console.log(fileUrl)
-        this.billId = key
-        this.fileUrl = fileUrl
-        this.fileName = fileName
-      }).catch(error => console.error(error))
+    const extensionCheck = /(png|jpg|jpeg)/g;
+    const extension = file.name.split('.').pop();
+    const errorMessage = document.getElementsByClassName('bad-proof-format')[0];
+    const submitBtn = document.querySelector("#btn-send-bill");
+
+    //IF JPEG OK
+    if (extension.toLowerCase().match(extensionCheck)) {
+      //active le bouton submit
+      submitBtn.removeAttribute('disabled');
+      // enlève la classe bad-proof-format
+      errorMessage.style.display = "none";
+
+
+      formData.append('file', file)
+      this.store
+        .bills()
+        .create({
+          data: formData,
+          headers: {
+            noContentType: true
+          }
+        })
+        .then(({fileUrl, key}) => {
+          this.billId = key
+          this.fileUrl = fileUrl
+          this.fileName = fileName
+        }).catch(error => console.error(error))
+    }
+    else{
+      
+      console.log('fichier est au mauvais format');
+
+      console.log(file);
+      console.log(file.name);
+      //desactive le bouton submit
+      submitBtn.setAttribute('disabled', '');
+
+      // rajoute la classe bad-proof-format
+      errorMessage.style.display = "block";
+
+    }
   }
-
-
-
 
 
   handleSubmit = e => {
