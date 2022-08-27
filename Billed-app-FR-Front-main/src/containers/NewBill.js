@@ -29,12 +29,10 @@ export default class NewBill {
     const extensionCheck = /(png|jpg|jpeg)/g;
     const extension = file.name.split('.').pop();
     const errorMessage = document.getElementsByClassName('bad-proof-format')[0];
-    const submitBtn = document.querySelector("#btn-send-bill");
 
     //IF JPEG OK
     if (extension.toLowerCase().match(extensionCheck)) {
-      //active le bouton submit
-      submitBtn.removeAttribute('disabled');
+
       // enlève la classe bad-proof-format
       errorMessage.style.display = "none";
 
@@ -55,9 +53,7 @@ export default class NewBill {
         }).catch(error => console.error(error))
     }
     else{
-      
-      //desactive le bouton submit
-      submitBtn.setAttribute('disabled', '');
+      document.getElementById("file-PJ").value = "";
 
       // rajoute la classe bad-proof-format
       errorMessage.style.display = "block";
