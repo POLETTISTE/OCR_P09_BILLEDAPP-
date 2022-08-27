@@ -56,10 +56,6 @@ export default class NewBill {
     }
     else{
       
-      console.log('fichier est au mauvais format');
-
-      console.log(file);
-      console.log(file.name);
       //desactive le bouton submit
       submitBtn.setAttribute('disabled', '');
 
