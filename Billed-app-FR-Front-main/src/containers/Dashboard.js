@@ -148,18 +148,24 @@ export default class {
     // if (this.counter % 2 === 0) {
 
       if (!this.dropdownListIsOpen[index]) {
+        //Si la liste est fermée alors on l'ouvre
+
       $(`#arrow-icon${this.index}`).css({ transform: 'rotate(0deg)'})
       $(`#status-bills-container${this.index}`)
         .html(cards(filteredBills(bills, getStatus(this.index))))
         
         this.dropdownListIsOpen[index] = true
+        // console.log(this.dropdownListIsOpen[index])
     } else {
-      
+        //Si la liste est ouverte alors on la ferme
+
       $(`#arrow-icon${this.index}`).css({ transform: 'rotate(90deg)'})
       $(`#status-bills-container${this.index}`)
       .html("")
       
       this.dropdownListIsOpen[index] = false
+      // console.log(this.dropdownListIsOpen[index])
+
     }
 
 
