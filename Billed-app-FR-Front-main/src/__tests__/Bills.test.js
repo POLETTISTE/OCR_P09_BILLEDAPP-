@@ -3,6 +3,7 @@
  */
 
 import { fireEvent, screen, waitFor } from "@testing-library/dom"
+import userEvent from '@testing-library/user-event'
 import BillsUI from "../views/BillsUI.js"
 import { bills } from "../fixtures/bills.js"
 import { ROUTES_PATH} from "../constants/routes.js";
@@ -10,10 +11,9 @@ import {localStorageMock} from "../__mocks__/localStorage.js";
 
 import router from "../app/Router.js";
 
-
-import userEvent from '@testing-library/user-event'
-
 import mockStore from "../__mocks__/store"
+
+
 
 describe("Given I am connected as an employee", () => {
   describe("When I am on Bills Page", () => {
@@ -42,15 +42,11 @@ describe("Given I am connected as an employee", () => {
       const datesSorted = [...dates].sort(antiChrono)
       expect(dates).toEqual(datesSorted)
     })
-
-    test("404 message error", async () => {
-
-
-    })
-
-    test("500 message error", async () => {
-
-
-    })
   })
 })
+
+// Tests d'intégration GET
+
+
+
+
