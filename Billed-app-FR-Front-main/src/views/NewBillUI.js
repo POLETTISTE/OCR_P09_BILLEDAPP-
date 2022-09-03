@@ -57,7 +57,7 @@ export default () => {
                     <label for="file" class="bold-label">Justificatif</label>
                     <input required type="file" class="form-control blue-border" id='file-PJ' data-testid="file" />
                   </div>
-                    <p class="bad-proof-format" style='display:none'>Mauvais format de justificatif - utiliser jpg, jpeg ou png</p>
+                    <p data-testid="bad-proof-format" class="bad-proof-format" style='display:none'>Mauvais format de justificatif - utiliser jpg, jpeg ou png</p>
                 </div>
             </div>
             <div class="row">
