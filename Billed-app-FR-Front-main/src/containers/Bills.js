@@ -35,7 +35,7 @@ export default class {
       .then(snapshot => {
         // const bills = snapshot
         // console.log(snapshot)
-        // pas demandé mais pour l'affichage trié en plus du test dans BillsUI
+        // pas demandé mais pour l'affichage trié en plus de la vue dans BillsUI
         const bills = snapshot.sort((a, b) => new Date(b.date) - new Date(a.date))
 
           .map(doc => {
