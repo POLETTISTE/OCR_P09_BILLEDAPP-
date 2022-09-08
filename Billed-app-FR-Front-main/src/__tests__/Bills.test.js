@@ -123,7 +123,7 @@
          }})
        window.onNavigate(ROUTES_PATH.Bills)
        await new Promise(process.nextTick);
-       const message = await screen.getByText(/Erreur 404/)
+       const message = screen.getByText(/Erreur 404/)
        expect(message).toBeTruthy()
      })
  
@@ -138,7 +138,7 @@
  
        window.onNavigate(ROUTES_PATH.Bills)
        await new Promise(process.nextTick);
-       const message = await screen.getByText(/Erreur 500/)
+       const message = screen.getByText(/Erreur 500/)
        expect(message).toBeTruthy()
      })
    })
