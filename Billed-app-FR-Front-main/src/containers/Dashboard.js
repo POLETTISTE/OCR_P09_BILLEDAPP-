@@ -139,6 +139,9 @@ export default class {
     this.onNavigate(ROUTES_PATH['Dashboard'])
   }
 
+
+  //*************** [BUG report] - dashboard *******************/
+
   handleShowTickets(e, bills, index) {
     // e.preventDefault()
 

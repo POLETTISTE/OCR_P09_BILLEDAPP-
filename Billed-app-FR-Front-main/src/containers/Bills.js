@@ -27,6 +27,10 @@ export default class {
     $('#modaleFile').modal('show')
   }
 
+
+  //*************** [BUG report] - Bills 1*******************/
+  
+
   getBills = () => {
     if (this.store) {
       return this.store

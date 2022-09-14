@@ -44,14 +44,13 @@
  })
  
  
-   describe("When on the Dashboard and I click on an eye icon", () => {
+   describe("When I am connected like an employee on the Dashboard and I click on an eye icon", () => {
      test("Then a modal should open", async () => {
  
        const onNavigate = (pathname) => {
          document.body.innerHTML = ROUTES({pathname})
        }
  
-   describe("Given I am connected as an employee", () => {
        Object.defineProperty(window, 'localStorage', { value: localStorageMock })
        window.localStorage.setItem('user', JSON.stringify({
          type: 'Employee'
@@ -75,7 +74,7 @@
        fireEvent.click(eyeIcon)
  
        expect(handleClickIconEye).toHaveBeenCalled()
-     })
+    
    })
  })
  

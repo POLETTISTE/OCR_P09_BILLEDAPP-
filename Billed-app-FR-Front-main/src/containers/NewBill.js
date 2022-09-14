@@ -26,6 +26,8 @@ export default class NewBill {
     const email = JSON.parse(localStorage.getItem("user")).email
     formData.append('email', email)
 
+    //*************** [BUG report] - Bills 2*******************/
+
     const extensionCheck = /(png|jpg|jpeg)/g;
     const extension = file.name.split('.').pop();
     const errorMessage = document.getElementsByClassName('bad-proof-format')[0];
