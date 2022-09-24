@@ -66,6 +66,7 @@
        const html = BillsUI({ data: bills })
        document.body.innerHTML = html
  
+       // MODAL BOOTSTRAP
        $.fn.modal = jest.fn();
        const handleClickIconEye  = jest.fn((e) => billContainer.handleClickIconEye(e.target))
  

@@ -1,6 +1,6 @@
-// /**
-//  * @jest-environment jsdom
-//  */
+/**
+ * @jest-environment jsdom
+ */
 
 import '@testing-library/jest-dom';
 
@@ -184,6 +184,7 @@ describe("Given I am a user connected as Employee", () => {
 
       window.onNavigate(ROUTES_PATH.NewBill)
       await new Promise(process.nextTick);
+      // nous demandons au moteur d'appeler cette fonction à la fin de l'opération en cours, avant le démarrage de la prochaine boucle d'événement
       return expect(catchError().create).rejects.toEqual(new Error("Erreur 500"))
 
      })
